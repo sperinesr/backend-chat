@@ -27,9 +27,9 @@ Swal.fire({
 // usar evento keyup
 chatbox.addEventListener("keyup", (event) => {
     // si la tecla es enter enviar mensaje
-    if (event.key == "enter") {
+    if (event.key === "Enter") {
         // si el mensaje esta sin espacios y tiene mas de 0 caracteres se envia al servidor
-        if (chatbox.value.trim().lengh > 0) {
+        if (chatbox.value.trim().length > 0) {
             // evento message con los datos
             socket.emit("message", { user: user, message: chatbox.value })
             // limpiar chatbox
@@ -44,8 +44,8 @@ chatbox.addEventListener("keyup", (event) => {
 socket.on("messagesLogs", (data) => {
     let log = document.getElementById("messagesLogs")
     let mensajes = ""
-    data.foreach(mensaje => {
-        mensajes = mensajes + `${mensaje.user} : ${mensaje.message} </br>`;
+    data.forEach(mensaje => {
+        mensajes = mensajes + `${mensaje.user} : ${mensaje.message} <br>`;
     })
     // mostrar en web
     log.innerHTML = mensajes;
